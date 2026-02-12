@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+
+logging:
+  level:
+    com.openfolio: INFO
+  pattern:
+    console: '{"timestamp":"%d","level":"%p","logger":"%logger","message":"%m"}%n'
