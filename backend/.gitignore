@@ -1,0 +1,20 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build output
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Maven
+*.jar
+*.war
+*.ear
+
+# OS
+.DS_Store
