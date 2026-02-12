@@ -1,0 +1,55 @@
+# ── Environment variables ──
+.env
+.env.local
+.env.*.local
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── IDE / Editor ──
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*.code-workspace
+
+# ── Claude / AI ──
+.claude/
+
+# ── Python virtual environment ──
+venv/
+__pycache__/
+*.pyc
+
+# ── Backend (Java / Spring Boot) ──
+backend/target/
+backend/.mvn/
+backend/*.jar
+backend/*.war
+backend/*.ear
+*.class
+*.log
+
+# ── Mobile (React Native) ──
+mobile/node_modules/
+mobile/.bundle/
+mobile/ios/Pods/
+mobile/ios/build/
+mobile/ios/*.xcworkspace/xcuserdata/
+mobile/ios/*.xcodeproj/xcuserdata/
+mobile/ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+mobile/android/.gradle/
+mobile/android/build/
+mobile/android/app/build/
+mobile/android/.cxx/
+mobile/android/local.properties
+mobile/.metro-health-check*
+mobile/coverage/
+*.jsbundle
+*.hprof
+*.keystore
+!debug.keystore
+npm-debug.log
+yarn-error.log
