@@ -1,0 +1,33 @@
+import {tokens} from '../tokens';
+
+export const hackerTheme = {
+  ...tokens,
+  colors: {
+    ...tokens.colors,
+    primary: '#00FF41',
+    primaryDark: '#00CC34',
+    primaryLight: '#33FF6B',
+    secondary: '#00BFFF',
+    accent: '#FF6F00',
+    background: '#0A0A0A',
+    surface: '#111111',
+    surfaceElevated: '#1A1A1A',
+    card: '#0F0F0F',
+    cardBorder: 'rgba(0,255,65,0.08)',
+    cardHover: '#1A2A1A',
+    text: '#00FF41',
+    textSecondary: '#00AA2C',
+    textMuted: '#007A1F',
+    border: '#1A3A1A',
+    borderLight: '#142814',
+    error: '#FF4136',
+    success: '#00FF41',
+    warning: '#FFDC00',
+    info: '#00BFFF',
+    overlay: 'rgba(0,0,0,0.8)',
+    gradientStart: '#00FF41',
+    gradientEnd: '#00BFFF',
+    gradientAccent: '#FF6F00',
+    shadowColor: '#00FF41',
+  },
+} as const;
