@@ -1,10 +1,9 @@
 <div align="center">
-  <img src="assets/logo.jpeg" width="180" alt="OpenFolio Logo" />
-
-  # OpenFolio
-
-  > **Full-stack developer portfolio platform** — GitHub-powered portfolios, AI-enhanced resumes, and PDF export.
-  > Built with Spring Boot 3 · React Native · MySQL · Ollama AI.
+  <img src="assets/logo.jpeg" width="180" alt="OpenFolio" />
+  <br /><br />
+  <strong>GitHub-powered portfolios · AI-enhanced resumes · PDF export</strong>
+  <br />
+  <sub>Spring Boot 3 · React Native · MySQL · Ollama AI</sub>
 </div>
 
 ---
