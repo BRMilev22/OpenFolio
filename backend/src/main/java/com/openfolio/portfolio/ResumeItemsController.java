@@ -16,6 +16,8 @@ import com.openfolio.shared.exception.ResourceNotFoundException;
 import com.openfolio.shared.exception.UnauthorizedException;
 import com.openfolio.shared.security.AuthenticatedUser;
 import com.openfolio.shared.web.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,7 @@ import java.util.List;
  * Experience, Education, and Certifications.
  */
 @RestController
+@Tag(name = "Resume Items", description = "CRUD for portfolio experience, education, and certifications")
 public class ResumeItemsController {
 
     private final PortfolioRepository portfolioRepository;
@@ -48,6 +51,7 @@ public class ResumeItemsController {
     // ─── Experience ─────────────────────────────────────────────────────────
 
     @GetMapping("/api/v1/portfolios/{portfolioId}/experiences")
+    @Operation(summary = "List experiences")
     public ResponseEntity<ApiResponse<List<ExperienceResponse>>> listExperiences(
             @PathVariable Long portfolioId,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -60,6 +64,7 @@ public class ResumeItemsController {
 
     @PostMapping("/api/v1/portfolios/{portfolioId}/experiences")
     @Transactional
+    @Operation(summary = "Add experience")
     public ResponseEntity<ApiResponse<ExperienceResponse>> createExperience(
             @PathVariable Long portfolioId,
             @RequestBody ExperienceRequest req,
@@ -80,6 +85,7 @@ public class ResumeItemsController {
 
     @PutMapping("/api/v1/experiences/{id}")
     @Transactional
+    @Operation(summary = "Update experience")
     public ResponseEntity<ApiResponse<ExperienceResponse>> updateExperience(
             @PathVariable Long id,
             @RequestBody ExperienceRequest req,
@@ -100,6 +106,7 @@ public class ResumeItemsController {
 
     @DeleteMapping("/api/v1/experiences/{id}")
     @Transactional
+    @Operation(summary = "Delete experience")
     public ResponseEntity<ApiResponse<Void>> deleteExperience(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -113,6 +120,7 @@ public class ResumeItemsController {
     // ─── Education ──────────────────────────────────────────────────────────
 
     @GetMapping("/api/v1/portfolios/{portfolioId}/education")
+    @Operation(summary = "List education")
     public ResponseEntity<ApiResponse<List<EducationResponse>>> listEducation(
             @PathVariable Long portfolioId,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -125,6 +133,7 @@ public class ResumeItemsController {
 
     @PostMapping("/api/v1/portfolios/{portfolioId}/education")
     @Transactional
+    @Operation(summary = "Add education")
     public ResponseEntity<ApiResponse<EducationResponse>> createEducation(
             @PathVariable Long portfolioId,
             @RequestBody EducationRequest req,
@@ -144,6 +153,7 @@ public class ResumeItemsController {
 
     @PutMapping("/api/v1/education/{id}")
     @Transactional
+    @Operation(summary = "Update education")
     public ResponseEntity<ApiResponse<EducationResponse>> updateEducation(
             @PathVariable Long id,
             @RequestBody EducationRequest req,
@@ -163,6 +173,7 @@ public class ResumeItemsController {
 
     @DeleteMapping("/api/v1/education/{id}")
     @Transactional
+    @Operation(summary = "Delete education")
     public ResponseEntity<ApiResponse<Void>> deleteEducation(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -176,6 +187,7 @@ public class ResumeItemsController {
     // ─── Certifications ─────────────────────────────────────────────────────
 
     @GetMapping("/api/v1/portfolios/{portfolioId}/certifications")
+    @Operation(summary = "List certifications")
     public ResponseEntity<ApiResponse<List<CertificationResponse>>> listCertifications(
             @PathVariable Long portfolioId,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -188,6 +200,7 @@ public class ResumeItemsController {
 
     @PostMapping("/api/v1/portfolios/{portfolioId}/certifications")
     @Transactional
+    @Operation(summary = "Add certification")
     public ResponseEntity<ApiResponse<CertificationResponse>> createCertification(
             @PathVariable Long portfolioId,
             @RequestBody CertificationRequest req,
@@ -208,6 +221,7 @@ public class ResumeItemsController {
 
     @PutMapping("/api/v1/certifications/{id}")
     @Transactional
+    @Operation(summary = "Update certification")
     public ResponseEntity<ApiResponse<CertificationResponse>> updateCertification(
             @PathVariable Long id,
             @RequestBody CertificationRequest req,
@@ -228,6 +242,7 @@ public class ResumeItemsController {
 
     @DeleteMapping("/api/v1/certifications/{id}")
     @Transactional
+    @Operation(summary = "Delete certification")
     public ResponseEntity<ApiResponse<Void>> deleteCertification(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {

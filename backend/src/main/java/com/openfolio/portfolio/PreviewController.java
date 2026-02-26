@@ -1,12 +1,15 @@
 package com.openfolio.portfolio;
 
 import com.openfolio.shared.security.AuthenticatedUser;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/portfolios")
+@Tag(name = "Portfolio Preview", description = "Live HTML preview of portfolios")
 public class PreviewController {
 
     private final PortfolioDataLoader dataLoader;
@@ -18,6 +21,7 @@ public class PreviewController {
     }
 
     @GetMapping(value = "/{id}/preview", produces = MediaType.TEXT_HTML_VALUE)
+    @Operation(summary = "Preview portfolio HTML", description = "Returns a browser-renderable HTML preview of the portfolio with the current theme.")
     public String preview(@PathVariable Long id,
                           @AuthenticationPrincipal AuthenticatedUser user) {
         PortfolioBundle bundle = dataLoader.load(id, user.userId());

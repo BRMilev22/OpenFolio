@@ -8,6 +8,8 @@ import com.openfolio.shared.security.AuthenticatedUser;
 import com.openfolio.shared.web.ApiResponse;
 import com.openfolio.skill.SkillRepository;
 import com.openfolio.skill.dto.SkillResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/portfolios/{portfolioId}")
+@Tag(name = "Portfolio Items", description = "Projects and skills within a portfolio")
 public class PortfolioItemsController {
 
     private final PortfolioRepository portfolioRepository;
@@ -30,6 +33,7 @@ public class PortfolioItemsController {
     }
 
     @GetMapping("/projects")
+    @Operation(summary = "List projects", description = "Returns all projects in the portfolio ordered by display order.")
     public ApiResponse<List<ProjectResponse>> getProjects(
             @PathVariable Long portfolioId,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -40,6 +44,7 @@ public class PortfolioItemsController {
     }
 
     @GetMapping("/skills")
+    @Operation(summary = "List skills", description = "Returns all skills in the portfolio ordered by display order.")
     public ApiResponse<List<SkillResponse>> getSkills(
             @PathVariable Long portfolioId,
             @AuthenticationPrincipal AuthenticatedUser user) {

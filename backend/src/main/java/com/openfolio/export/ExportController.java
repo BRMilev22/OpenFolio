@@ -6,6 +6,8 @@ import com.openfolio.export.dto.SavedResumeInfo;
 import com.openfolio.shared.exception.ResourceNotFoundException;
 import com.openfolio.shared.security.AuthenticatedUser;
 import com.openfolio.shared.web.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
+@Tag(name = "PDF Export", description = "Generate, preview, download, save, and publish PDF resumes")
 public class ExportController {
 
     private final ExportService exportService;
@@ -34,6 +37,7 @@ public class ExportController {
 
     /** Trigger PDF generation → returns a short-lived download token + URL. */
     @PostMapping("/api/v1/portfolios/{id}/export/pdf")
+    @Operation(summary = "Generate PDF resume", description = "Renders the portfolio as a PDF and returns a short-lived download token + URL.")
     public ResponseEntity<ApiResponse<ExportResponse>> generatePdf(
             @PathVariable Long id,
             @RequestParam(defaultValue = "pdf") String template,
@@ -55,6 +59,7 @@ public class ExportController {
 
     /** Preview HTML that matches exactly how the PDF will look. */
     @GetMapping("/api/v1/portfolios/{id}/export/preview")
+    @Operation(summary = "Preview PDF as HTML", description = "Returns the HTML that will be rendered to PDF, useful for in-app preview.")
     public ResponseEntity<String> previewHtml(
             @PathVariable Long id,
             @RequestParam(defaultValue = "pdf") String template,
@@ -78,6 +83,7 @@ public class ExportController {
 
     /** Check if AI cache is warm for a portfolio. */
     @GetMapping("/api/v1/portfolios/{id}/export/ai-status")
+    @Operation(summary = "Check AI rewrite cache", description = "Returns whether the Ollama AI-rewritten content is cached and ready.")
     public ResponseEntity<ApiResponse<Map<String, Object>>> aiStatus(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -87,6 +93,7 @@ public class ExportController {
 
     /** Pre-warm AI cache asynchronously. Returns immediately. */
     @PostMapping("/api/v1/portfolios/{id}/export/warm-ai")
+    @Operation(summary = "Warm AI rewrite cache", description = "Triggers an async Ollama call to pre-generate AI-enhanced resume text.")
     public ResponseEntity<ApiResponse<Map<String, String>>> warmAi(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -104,6 +111,7 @@ public class ExportController {
 
     /** Generate PDF and return as base64 JSON for in-app viewing. */
     @PostMapping("/api/v1/portfolios/{id}/export/pdf/inline")
+    @Operation(summary = "Generate PDF inline (base64)", description = "Generates a PDF and returns it as a base64-encoded string for in-app viewing.")
     public ResponseEntity<ApiResponse<Map<String, String>>> pdfInline(
             @PathVariable Long id,
             @RequestParam(defaultValue = "pdf") String template,
@@ -126,6 +134,7 @@ public class ExportController {
 
     /** Unauthenticated download endpoint (token acts as proof of generation). */
     @GetMapping("/api/v1/export/download/{token}")
+    @Operation(summary = "Download PDF by token", description = "Public endpoint — the short-lived token acts as proof of generation.", security = {})
     public ResponseEntity<byte[]> download(@PathVariable String token) {
         byte[] pdf = tempStore.retrieve(token);
         if (pdf == null) throw new ResourceNotFoundException("Export", token);
@@ -139,6 +148,7 @@ public class ExportController {
 
     /** Generate PDF and save it permanently. Returns metadata (no PDF bytes). */
     @PostMapping("/api/v1/portfolios/{id}/export/save")
+    @Operation(summary = "Generate & save PDF", description = "Generates a PDF, saves it persistently, and returns metadata.")
     public ResponseEntity<ApiResponse<SavedResumeInfo>> generateAndSave(
             @PathVariable Long id,
             @RequestParam(defaultValue = "pdf") String template,
@@ -161,6 +171,7 @@ public class ExportController {
 
     /** List all saved resumes for the current user. */
     @GetMapping("/api/v1/saved-resumes")
+    @Operation(summary = "List saved resumes", description = "Returns metadata for all saved PDF resumes belonging to the current user.")
     public ResponseEntity<ApiResponse<List<SavedResumeInfo>>> listSaved(
             @AuthenticationPrincipal AuthenticatedUser user) {
         List<SavedResumeInfo> list = exportService.listSaved(user.userId())
@@ -170,6 +181,7 @@ public class ExportController {
 
     /** Download a saved resume PDF. */
     @GetMapping("/api/v1/saved-resumes/{id}/pdf")
+    @Operation(summary = "Download saved resume", description = "Returns the saved PDF as a binary download.")
     public ResponseEntity<byte[]> downloadSaved(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -184,6 +196,7 @@ public class ExportController {
 
     /** Get a saved resume PDF as base64 for in-app viewing. */
     @GetMapping("/api/v1/saved-resumes/{id}/base64")
+    @Operation(summary = "Saved resume as base64", description = "Returns the saved PDF as a base64 string for in-app viewing.")
     public ResponseEntity<ApiResponse<Map<String, String>>> savedBase64(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -195,6 +208,7 @@ public class ExportController {
 
     /** Delete a saved resume. */
     @DeleteMapping("/api/v1/saved-resumes/{id}")
+    @Operation(summary = "Delete saved resume", description = "Permanently removes a saved PDF resume.")
     public ResponseEntity<ApiResponse<Void>> deleteSaved(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -206,6 +220,7 @@ public class ExportController {
 
     /** Publish a saved resume — returns a shareable public URL. */
     @PostMapping("/api/v1/saved-resumes/{id}/publish")
+    @Operation(summary = "Publish saved resume", description = "Generates a public URL token so anyone with the link can view the PDF.")
     public ResponseEntity<ApiResponse<SavedResumeInfo>> publishResume(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -222,6 +237,7 @@ public class ExportController {
 
     /** Unpublish a saved resume — removes the public link. */
     @DeleteMapping("/api/v1/saved-resumes/{id}/publish")
+    @Operation(summary = "Unpublish saved resume", description = "Deactivates the public sharing link.")
     public ResponseEntity<ApiResponse<SavedResumeInfo>> unpublishResume(
             @PathVariable Long id,
             @AuthenticationPrincipal AuthenticatedUser user) {
@@ -236,6 +252,7 @@ public class ExportController {
 
     /** Public endpoint — anyone with the token can view the PDF. */
     @GetMapping("/api/v1/public/resume/{token}")
+    @Operation(summary = "View published resume PDF", description = "Public endpoint — anyone with the token can view/download the PDF.", security = {})
     public ResponseEntity<byte[]> publicResumePdf(@PathVariable String token) {
         SavedResume saved = exportService.getByPublishToken(token);
         if (saved == null) throw new ResourceNotFoundException("Resume", token);
