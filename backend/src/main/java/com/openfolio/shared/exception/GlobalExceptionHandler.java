@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -29,6 +30,12 @@ public class GlobalExceptionHandler {
                 .orElse("Validation failed");
         return ResponseEntity.badRequest()
                 .body(ApiResponse.error("VALIDATION_ERROR", message));
+    }
+
+    /** Let Spring handle static-resource 404s (e.g. Swagger UI) natively. */
+    @ExceptionHandler(NoResourceFoundException.class)
+    ResponseEntity<Void> handleNoResource(NoResourceFoundException ex) throws NoResourceFoundException {
+        throw ex;  // re-throw so Spring's default handler resolves it
     }
 
     @ExceptionHandler(Exception.class)
