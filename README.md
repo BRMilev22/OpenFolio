@@ -12,46 +12,46 @@
 <table>
   <tr>
     <td align="center" width="33%">
-      <img src="assets/initial-launch.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/nTcvjoEjeguDygMlDs/giphy.gif" width="240" /><br />
       <strong>GitHub Login & Import</strong><br />
       <sub>One-tap OAuth → auto-import repos</sub>
     </td>
     <td align="center" width="33%">
-      <img src="assets/preview.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/elmj67FlbDIk3vLlpE/giphy.gif" width="240" /><br />
       <strong>Portfolio Preview</strong><br />
       <sub>Live HTML preview of your portfolio</sub>
     </td>
     <td align="center" width="33%">
-      <img src="assets/preview-theme-change.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/mv89Lrb0awim2NyhUp/giphy.gif" width="240" /><br />
       <strong>Theme Switching</strong><br />
       <sub>Dark · Clean · Hacker · Minimal</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="33%">
-      <img src="assets/resume-tab-skills-projects-cycle.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/J6qkuz36DCIdKh82lk/giphy.gif" width="240" /><br />
       <strong>Resume Builder</strong><br />
       <sub>Skills, projects & experience editor</sub>
     </td>
     <td align="center" width="33%">
-      <img src="assets/pdf-tab.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/JdxMnZJxm4aIdZUmSz/giphy.gif" width="240" /><br />
       <strong>PDF Export</strong><br />
       <sub>Generate & save professional PDFs</sub>
     </td>
     <td align="center" width="33%">
-      <img src="assets/pdf-tab-preview.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/eUhnkemuEZqPVJUX34/giphy.gif" width="240" /><br />
       <strong>PDF Preview</strong><br />
       <sub>In-app PDF viewer with templates</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="33%">
-      <img src="assets/publish-tab.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/CiGa1mEVqnCNbRvQiu/giphy.gif" width="240" /><br />
       <strong>Publish Tab</strong><br />
       <sub>Manage public portfolio & resume links</sub>
     </td>
     <td align="center" width="33%">
-      <img src="assets/publish-and-open.gif" width="240" /><br />
+      <img src="https://media.giphy.com/media/vSeMcz6gtOgqyf5tev/giphy.gif" width="240" /><br />
       <strong>Publish & Share</strong><br />
       <sub>One-tap publish → shareable URL</sub>
     </td>
