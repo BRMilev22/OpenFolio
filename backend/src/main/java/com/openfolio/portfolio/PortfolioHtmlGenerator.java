@@ -482,7 +482,7 @@ public class PortfolioHtmlGenerator {
         if (photoUrl != null) {
             sb.append("<td style=\"width:62pt;vertical-align:middle;padding-right:14pt\">");
             sb.append("<img src=\"").append(esc(photoUrl)).append("\" width=\"56\" height=\"56\" ");
-            sb.append("style=\"border-radius:50%;border:2pt solid ").append(p.accent()).append("\" />");
+            sb.append("style=\"border-radius:6pt;border:1.5pt solid ").append(p.accent()).append("\" />");
             sb.append("</td>\n");
         }
         sb.append("<td style=\"vertical-align:middle\">");
@@ -670,8 +670,8 @@ public class PortfolioHtmlGenerator {
         if (photoUrl != null) {
             sb.append("<td style=\"width:58pt;vertical-align:top;padding-right:12pt\">");
             sb.append("<img src=\"").append(esc(photoUrl)).append("\" width=\"52\" height=\"52\" ");
-            sb.append("style=\"border-radius:").append(isHacker ? "4pt" : "50%")
-              .append(";border:").append(isHacker ? "1.5pt" : "0.5pt").append(" solid ")
+            sb.append("style=\"border-radius:").append(isHacker ? "4pt" : "6pt")
+              .append(";border:").append(isHacker ? "1.5pt" : "1pt").append(" solid ")
               .append(isHacker ? p.accent() : "#ccc").append("\" />");
             sb.append("</td>\n");
         }
