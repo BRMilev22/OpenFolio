@@ -82,6 +82,7 @@
    - 5.5 [REST API Reference](#55-rest-api-reference)
    - 5.6 [Database Schema](#56-database-schema)
    - 5.7 [Flyway Migrations](#57-flyway-migrations)
+   - 5.8 [API Documentation (Swagger UI)](#58-api-documentation-swagger-ui)
 6. [GitHub Ingestion Pipeline](#6-github-ingestion-pipeline)
 7. [AI Enhancement Engine](#7-ai-enhancement-engine)
 8. [PDF Export Pipeline](#8-pdf-export-pipeline)
@@ -713,6 +714,27 @@ Migrations run automatically on startup. Each migration is additive and never de
 | V015 | Create `certifications` table |
 | V016 | Make `education.degree` nullable |
 | V017 | Add `publish_token` / `published_at` to `saved_resumes` |
+
+### 5.8 API Documentation (Swagger UI)
+
+The backend integrates **springdoc-openapi** to auto-generate a live, interactive API reference from the controller annotations. Every endpoint, parameter, and response schema is documented and explorable directly in the browser.
+
+**Access it at:** [`http://localhost:8080/swagger-ui/index.html`](http://localhost:8080/swagger-ui/index.html)
+
+All 11 controllers are annotated with `@Tag` (grouping) and `@Operation` (summary + description) across **50+ endpoints**. The Swagger UI includes a built-in **Authorize** button where you can paste a JWT `Bearer` token to test authenticated endpoints directly.
+
+| Feature | Details |
+|---|---|
+| Library | `springdoc-openapi-starter-webmvc-ui` 2.8.5 |
+| OpenAPI spec (JSON) | `GET /v3/api-docs` |
+| Swagger UI | `GET /swagger-ui/index.html` |
+| Security scheme | HTTP Bearer (JWT) — "Authorize" button in UI |
+| Grouped by | `@Tag`: Authentication, Users, Portfolios, Portfolio Items, Resume Items, Resume Builder, Preview, PDF Export, Publishing, GitHub Ingestion, Public |
+
+<div align="center">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjhvbHZxYmhyeXl2aGQ5Mnh0Z2Y5dXVkZDg4NGE5eGo5NG9wdThsZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YLcsx8wcxT58B5vlg7/giphy.gif" width="700" /><br />
+  <sub>Swagger UI — browsing all available API endpoints</sub>
+</div>
 
 ---
 
